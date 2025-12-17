@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+    img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none';
+    font-src 'none'; form-action 'self'; frame-src 'none'; media-src 'none'; manifest-src 'none'; worker-src 'none';">
+    <title>ClickHouse Query Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ClickHouse Query Tool</h1>
+            <p>Enter SQL statements to view query results in real-time</p>
+        </div>
+
+        <div class="content">
+            <div class="query-section">
+                <label for="sqlInput">SQL Query</label>
+                <textarea 
+                    id="sqlInput" 
+                    placeholder="Enter SQL query, e.g.: SELECT * FROM table_name LIMIT 100"
+                >SELECT * FROM cases LIMIT 100</textarea>
+                
+                <div class="example-queries">
+                    <h3>Quick Query Examples:</h3>
+                    <button class="example-query" data-query="SELECT * FROM cases LIMIT 100">Query cases table</button>
+                    <button class="example-query" data-query="DESCRIBE cases">Describe cases table</button>
+                    <button class="example-query" data-query="SELECT case_type, COUNT(1) AS cnt FROM cases GROUP BY case_type ORDER BY cnt DESC">Count case type</button>
+                </div>
+
+                <div class="button-group">
+                    <button id="executeBtn">Execute Query</button>
+                    <button id="clearBtn">Clear Results</button>
+                </div>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Executing query...</p>
+            </div>
+
+            <div class="error" id="error"></div>
+            <div class="results-info" id="resultsInfo"></div>
+
+            <div id="resultsContainer">
+                <div class="no-data">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                    </svg>
+                    <h3>No Query Results</h3>
+                    <p>Please enter an SQL statement and click "Execute Query" button</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
