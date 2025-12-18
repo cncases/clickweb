@@ -31,7 +31,7 @@ struct QueryResponse {
 }
 
 #[derive(FromArgs)]
-/// Application configuration
+/// A web-based SQL client for ClickHouse
 #[argh(help_triggers("-h", "--help", "help"))]
 struct Cfg {
     /// clickHouse server URL
